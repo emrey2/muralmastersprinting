@@ -8,15 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const galleryItems = document.querySelectorAll(".gallery-item");
   let currentIndex = 0;
 
+  // Ensure modal is hidden initially
+  modal.style.display = "none";
+
   const openModal = (index) => {
-    modal.style.display = "flex";
+    modal.style.display = "flex"; // Open modal when an image is clicked
     modalImage.src = galleryItems[index].src;
     document.body.classList.add("modal-open");
     currentIndex = index;
   };
 
   const closeModal = () => {
-    modal.style.display = "none";
+    modal.style.display = "none"; // Close modal when clicking close button or backdrop
     document.body.classList.remove("modal-open");
   };
 
@@ -32,12 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   galleryItems.forEach((item, index) => {
-    item.addEventListener("click", () => openModal(index));
+    item.addEventListener("click", () => openModal(index)); // Open modal on image click
   });
 
   closeBtn.addEventListener("click", closeModal);
   window.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
+    if (e.target === modal) closeModal(); // Close modal if clicking outside of image
   });
 
   nextArrow.addEventListener("click", showNextImage);
